@@ -10,9 +10,9 @@ import static org.junit.Assert.assertTrue;
   public static final String DEVELOPER_NAME = "Pedro";
 
   @Property
-  public void numberOfMaxibonsCannotBeNegative(int numberOfMaxibons) {
-    Developer developer = new Developer(DEVELOPER_NAME, numberOfMaxibons);
-    assertTrue(developer.getNumberOfMaxibonsToGrab() >= 0);
+  public void numberOfMaxibonsCannotBeNegative(String name , int numberOfMaxibons) {
+    Developer developer = new Developer(name, numberOfMaxibons);
+    assertTrue(developer.getNumberOfMaxibonsToGrab() < 0);
     System.out.println(developer.toString());
   }
 }
