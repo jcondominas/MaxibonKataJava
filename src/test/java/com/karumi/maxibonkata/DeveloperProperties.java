@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnitQuickcheck.class) public class DeveloperProperties {
-  private KarumiHQs karumiHqs = new KarumiHQs(message->{
+  private KarumiHQs karumiHqs = new KarumiHQs(message-> {
   });
 
   @Property
@@ -29,7 +29,7 @@ import static org.junit.Assert.assertTrue;
     assertTrue(Karumies.ALBERTO.getNumberOfMaxibonsToGrab() == 1);
   }
 
-  @Property
+  @Property(trials = 1000)
   public void numberOfMaxibonsShouldBeAlwaysMoreThan2(@From(DevelopersGenerator.class) Developer developer) {
     karumiHqs.openFridge(developer);
     assertTrue(karumiHqs.getMaxibonsLeft() >= 2);
@@ -37,7 +37,8 @@ import static org.junit.Assert.assertTrue;
   }
 
   @Property
-  public void numberOfMaxibonsShouldBeAlwaysMoreThan2WhenDeveloperIsKarumier(@From(KarumiesGenerator.class) Developer developer) {
+  public void numberOfMaxibonsShouldBeAlwaysMoreThan2WhenDeveloperIsKarumier(
+  @From(KarumiesGenerator.class) Developer developer) {
     karumiHqs.openFridge(developer);
     assertTrue(karumiHqs.getMaxibonsLeft() >= 2);
     System.out.println(karumiHqs.getMaxibonsLeft());
